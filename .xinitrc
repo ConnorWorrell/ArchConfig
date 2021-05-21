@@ -7,5 +7,7 @@ for f in /etc/X11/xinit/xinitrc.d/?.sh; do
 done
 unset f
 
+picom -b
+
 exec i3
 
