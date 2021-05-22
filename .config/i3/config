@@ -186,3 +186,5 @@ bar {
 }
 
 new_window 1pixel
+
+bindsym $mod+Mod1+l exec i3lock
