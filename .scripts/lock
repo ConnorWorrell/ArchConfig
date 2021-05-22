@@ -1,0 +1,7 @@
+#!/bin/bash
+
+file=$(ls ~/Wallpapers | shuf -n 1)
+fullpath=~/Wallpapers/$file
+resolution=$(xrandr | fgrep "*" | awk '{print $1}')
+
+convert $fullpath -resize "$resolution^" -gravity center -crop "$resolution" RGB:- | i3lock --raw $resolution:rgb --image /dev/stdin
