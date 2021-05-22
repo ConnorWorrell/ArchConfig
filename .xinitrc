@@ -1,4 +1,4 @@
-feh --bg-scale -z ~/Wallpapers/* &
+randomWallpaper
 
 xrdb -load ~/.Xresources
 
