@@ -1,4 +1,4 @@
-randomWallpaper
+setWallpaper -r
 
 xrdb -load ~/.Xresources
 
