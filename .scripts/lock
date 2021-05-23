@@ -7,7 +7,15 @@ while test $# -gt 0; do
 			shift;;
 		-b|--buildcache) 
 			build="build"
-			shift;;
+			shift
+			case "$1" in
+				''|*[!0-9*)
+					startfile=1;;
+				*)
+					startfile=$1
+					shift;;
+			esac
+			;;
 		-r|--rebuildcache) 
 			build="rebuild"
 			shift
