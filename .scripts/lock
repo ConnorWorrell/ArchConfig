@@ -1,7 +1,17 @@
 #!/bin/bash
 
 file=$(ls ~/Wallpapers | shuf -n 1)
-fullpath=~/Wallpapers/$file
+fullpath=~/.Wallpapers_cache/LockScreens/${file//.jpg/.png}
 resolution=$(xrandr | fgrep "*" | awk '{print $1}')
 
-convert $fullpath -resize "$resolution^" -gravity center -crop "$resolution" RGB:- | i3lock --raw $resolution:rgb --image /dev/stdin
+if test -f "$fullpath"; then
+	echo "image found in cache"
+	i3lock --image $fullpath
+	exit 0
+fi
+
+echo "image not in cache converting"
+convert ~/Wallpapers/$file -colorspace RGB -resize "$resolution^" -gravity center -crop "$resolution" PNG:- | convert - $fullpath
+
+echo "locking"
+i3lock --image $fullpath
