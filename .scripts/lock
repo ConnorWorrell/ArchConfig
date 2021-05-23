@@ -52,7 +52,7 @@ then
 		
 
 		# echo $FileName
-		convert $file -colorspace RGB -resize "$resolution^" -gravity center -crop "$resolution" PNG:- | convert - ~/.Wallpapers_cache/LockScreens/$FileName
+		convert $file -colorspace RGB -gravity center -resize $resolution^ -gravity center -crop $resolution+0+0 +repage PNG:- | convert - ~/.Wallpapers_cache/LockScreens/$FileName
 
 		currentfile=$(expr $currentfile + 1)
 	done
