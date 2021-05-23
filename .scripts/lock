@@ -10,7 +10,17 @@ while test $# -gt 0; do
 			shift;;
 		-r|--rebuildcache) 
 			build="rebuild"
-			shift;;
+			shift
+			case "$1" in
+				''|*[!0-9*)
+					echo "rebuilding all"
+					startfile=1;;
+				*)
+					echo "rebuilding from $1"
+					startfile=$1
+					shift;;
+			esac
+			;;
 		*) 
 			echo "unknown flag use --help for more info"
 			exit 1;;
@@ -19,10 +29,11 @@ done
 
 if [ "$help" == "1" ]
 then
-	echo "locks screen, choosing a random background from ~/Wallpapers"
+	echo "Locks screen, choosing a random background from ~/Wallpapers"
 	echo " "
-	echo "-b,  --buildcache    build the cache of correctly sized windows, skipping windows that are already cached"
-	echo "-r,  --rebuildcache  build the entire cache of correctly sized windows"
+	echo "-b,  --buildcache    Build the cache, skipping windows that are already cached"
+	echo "-r,  --rebuildcache  Build the entire cache of correctly sized windows"
+	echo "                     If followed by a number, rebuild starts at that number"
 	exit 0
 fi 
 
@@ -37,6 +48,11 @@ then
 	echo "building cache"
 	for file in ~/Wallpapers/*
 	do 
+		if [ $startfile -gt $currentfile ]; then
+			currentfile=$(expr $currentfile + 1)
+			continue
+		fi		
+
 		FileName=$(basename ${file//.jpg/.png})
 		CacheFile=~/.Wallpapers_cache/LockScreens/$FileName
 
