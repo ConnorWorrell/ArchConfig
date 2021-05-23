@@ -40,7 +40,6 @@ then
 		FileName=$(basename ${file//.jpg/.png})
 		CacheFile=~/.Wallpapers_cache/LockScreens/$FileName
 
-		echo $CacheFile $build
 		if $(test -f "$CacheFile") && [ "$build" == "build" ]
 		then
 			echo [$currentfile/$fileCount] $(basename $file) found in cache
