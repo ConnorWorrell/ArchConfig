@@ -86,7 +86,7 @@ file=$(ls ~/Wallpapers | shuf -n 1)
 fullpath=~/.Wallpapers_cache/LockScreens/${file//.jpg/.png}
 
 if test -f "$fullpath"; then
-	echo "image found in cache"
+	echo "image found in cache $fullpath"
 	i3lock --image $fullpath
 	exit 0
 fi
