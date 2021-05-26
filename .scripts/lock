@@ -1,12 +1,21 @@
 #!/bin/bash
 
+lock="lock"
+
 while test $# -gt 0; do
 	case "$1" in
 		-h|--help) 
 			help="1"
 			shift;;
+		-c|--check)
+			check="check"
+			lock=""
+			shift;;
 		-b|--buildcache) 
 			build="build"
+			check="check"
+			prune="prune"
+			lock=""
 			shift
 			case "$1" in
 				''|*[!0-9*)
@@ -18,6 +27,7 @@ while test $# -gt 0; do
 			;;
 		-r|--rebuildcache) 
 			build="rebuild"
+			lock=""
 			shift
 			case "$1" in
 				''|*[!0-9*)
@@ -28,6 +38,15 @@ while test $# -gt 0; do
 					startfile=$1
 					shift;;
 			esac
+			;;
+		-f|--file)
+			shift
+			lockfile=$1
+			shift;;
+		-p|--prune)
+			shift
+			lock=""
+			prune="prune"
 			;;
 		*) 
 			echo "unknown flag use --help for more info"
@@ -41,11 +60,66 @@ then
 	echo " "
 	echo "-b,  --buildcache    Build the cache, skipping windows that are already cached"
 	echo "-r,  --rebuildcache  Build the entire cache of correctly sized windows"
+	echo "-c,  --check         Checks cache for corruption"
+	echo "-f,  --file          Specifiy file to use for lock screen"
+	echo "-p,  --prune         Remove files from cache that are not in Wallpapers folder"
 	echo "                     If followed by a number, rebuild starts at that number"
 	exit 0
 fi 
 
 resolution=$(xrandr | fgrep "*" | awk '{print $1}')
+
+if [ "$prune" == "prune" ]
+then
+	fileCount=$(ls ~/.Wallpapers_cache/LockScreens | wc -l)
+	currentfile=1
+	for file in ~/.Wallpapers_cache/LockScreens/*
+	do
+		echo "[$currentfile/$fileCount] Pruning"
+		currentfile=$(expr $currentfile + 1)
+
+		if [ "$(ls ~/Wallpapers | grep $(basename ${file//.png/}))" == "" ]
+		then
+			echo "Pruning $file"
+			rm $file
+		fi
+	done	
+fi
+
+if [ "$check" == "check" ]
+then
+	fileCount=$(ls ~/.Wallpapers_cache/LockScreens | wc -l)
+	currentfile=1
+
+	# using a for loop instead of the pngcheck's built in multi file check to reduce total ram usage
+	for file in ~/.Wallpapers_cache/LockScreens/*
+	do
+		echo "[$currentfile/$fileCount] Checking for corruption"
+		currentfile=$(expr $currentfile + 1)
+
+		if [ "$(pngcheck $file | grep -i "error")" != "" ]
+		then
+			echo "error found: $file"
+			errorFileName=$(basename $file)
+			CheckFileName=${errorFileName//.png/}
+			BuildFileName=$(ls ~/Wallpapers | grep $CheckFileName)
+			echo "BuildFileName $BuildFileName"
+			if [ "$BuildFileName" != "" ]
+			then 
+				echo "origional file found, replacing"
+				convert ~/Wallpapers/$BuildFileName -colorspace RGB -gravity center -resize $resolution^ -gravity center -crop $resolution+0+0 +repage PNG:- | convert - $file
+			else
+				echo "original file not found, deleting"
+				rm $file
+			fi
+		fi
+	done
+	
+	if [ $build != "build" ]
+	then
+		exit 0
+	fi
+fi
 
 if [ "$build" == "build" ] || [ "$build" == "rebuild" ]
 then
@@ -79,20 +153,31 @@ then
 
 		currentfile=$(expr $currentfile + 1)
 	done
-	exit 0
 fi
 
-file=$(ls ~/Wallpapers | shuf -n 1)
-fullpath=~/.Wallpapers_cache/LockScreens/${file//.jpg/.png}
+if [ "$lock" == "lock" ]
+then
+	if [ "$lockfile" == "" ]
+	then
+		file=$(ls ~/Wallpapers | shuf -n 1)
+		fullpath=~/.Wallpapers_cache/LockScreens/${file//.jpg/.png}
+	else
+		file=$(basename $lockfile)
+		fullpath=~/.Wallpapers_cache/LockScreens/${file//.jpg/.png}
+	fi		
 
-if test -f "$fullpath"; then
-	echo "image found in cache $fullpath"
+	if test -f "$fullpath"; then
+		echo "image found in cache $fullpath"
+		if [ "$(pngcheck $fullpath | grep -i "error")" != "" ]
+		then	
+			echo "image corrupt, rebuilding"
+		convert ~/Wallpapers/$file -colorspace RGB -gravity center -resize $resolution^ -gravity center -crop $resolution+0+0 +repage PNG:- | convert - $fullpath
+		fi		
+	else
+		echo "image not in cache converting"
+		convert ~/Wallpapers/$file -colorspace RGB -resize "$resolution^" -gravity center -crop "$resolution" PNG:- | convert - $fullpath
+	fi	
+
+	echo "locking"
 	i3lock --image $fullpath
-	exit 0
 fi
-
-echo "image not in cache converting"
-convert ~/Wallpapers/$file -colorspace RGB -resize "$resolution^" -gravity center -crop "$resolution" PNG:- | convert - $fullpath
-
-echo "locking"
-i3lock --image $fullpath
