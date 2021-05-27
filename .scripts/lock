@@ -107,7 +107,7 @@ then
 			if [ "$BuildFileName" != "" ]
 			then 
 				echo "origional file found, replacing"
-				convert ~/Wallpapers/$BuildFileName -colorspace RGB -gravity center -resize $resolution^ -gravity center -crop $resolution+0+0 +repage PNG:- | convert - $file
+				convert ~/Wallpapers/$BuildFileName -colorspace RGB -gravity Center -resize $resolution^ +repage -gravity Center -crop $resolution+0+0 +repage PNG:- | convert - $file
 			else
 				echo "original file not found, deleting"
 				rm $file
@@ -115,7 +115,7 @@ then
 		fi
 	done
 	
-	if [ $build != "build" ]
+	if [ "$build" != "build" ]
 	then
 		exit 0
 	fi
@@ -175,7 +175,7 @@ then
 		fi		
 	else
 		echo "image not in cache converting"
-		convert ~/Wallpapers/$file -colorspace RGB -resize "$resolution^" -gravity center -crop "$resolution" PNG:- | convert - $fullpath
+		convert $lockfile -colorspace RGB -resize $resolution^ -gravity center -crop $resolution+0+0 PNG:- | convert - $fullpath
 	fi	
 
 	echo "locking"
