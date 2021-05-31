@@ -69,6 +69,10 @@ fi
 
 resolution=$(xrandr | fgrep "*" | awk '{print $1}')
 
+build_lock () {
+		convert $1 -colorspace RGB -resize $resolution^ -gravity center -crop $resolution+0+0 PNG:- | convert - $2
+}
+
 if [ "$prune" == "prune" ]
 then
 	fileCount=$(ls ~/.Wallpapers_cache/LockScreens | wc -l)
@@ -107,7 +111,8 @@ then
 			if [ "$BuildFileName" != "" ]
 			then 
 				echo "origional file found, replacing"
-				convert ~/Wallpapers/$BuildFileName -colorspace RGB -gravity Center -resize $resolution^ +repage -gravity Center -crop $resolution+0+0 +repage PNG:- | convert - $file
+				build_lock ~/Wallpapers/$BuildFileName $file
+				# convert ~/Wallpapers/$BuildFileName -colorspace RGB -gravity Center -resize $resolution^ +repage -gravity Center -crop $resolution+0+0 +repage PNG:- | convert - $file
 			else
 				echo "original file not found, deleting"
 				rm $file
@@ -149,7 +154,8 @@ then
 		
 
 		# echo $FileName
-		convert $file -colorspace RGB -gravity center -resize $resolution^ -gravity center -crop $resolution+0+0 +repage PNG:- | convert - ~/.Wallpapers_cache/LockScreens/$FileName
+		# convert $file -colorspace RGB -gravity center -resize $resolution^ -gravity center -crop $resolution+0+0 +repage PNG:- | convert - ~/.Wallpapers_cache/LockScreens/$FileName
+		build_lock $file ~/.Wallpapers_cache/LockScreens/$FileName
 
 		currentfile=$(expr $currentfile + 1)
 	done
@@ -171,11 +177,13 @@ then
 		if [ "$(pngcheck $fullpath | grep -i "error")" != "" ]
 		then	
 			echo "image corrupt, rebuilding"
-		convert ~/Wallpapers/$file -colorspace RGB -gravity center -resize $resolution^ -gravity center -crop $resolution+0+0 +repage PNG:- | convert - $fullpath
+		# convert ~/Wallpapers/$file -colorspace RGB -gravity center -resize $resolution^ -gravity center -crop $resolution+0+0 +repage PNG:- | convert - $fullpath
+		build_lock ~/Wallpapers/$file $fullpath
 		fi		
 	else
 		echo "image not in cache converting"
-		convert $lockfile -colorspace RGB -resize $resolution^ -gravity center -crop $resolution+0+0 PNG:- | convert - $fullpath
+		build_lock $lockfile $fullpath
+		# convert $lockfile -colorspace RGB -resize $resolution^ -gravity center -crop $resolution+0+0 PNG:- | convert - $fullpath
 	fi	
 
 	echo "locking"
