@@ -10,6 +10,7 @@ unset f
 picom -b
 
 dwmblocks &
+dunst &
 
 # exec i3
 exec dwm
