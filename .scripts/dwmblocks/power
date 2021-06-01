@@ -18,8 +18,6 @@ fullBattery=""
 chargBattery=""
 disBattery=""
 
-output=""
-
 # Test for wall outlet plugin
 ac="$(cat /sys/class/power_supply/AC/online)"
 if [ $ac == "1" ]
@@ -43,4 +41,4 @@ else
 	batOutput=""
 fi
 
-echo "$acOutput$batOutput"
+ printf "%s%s\n" "$acOutput" "$batOutput"
