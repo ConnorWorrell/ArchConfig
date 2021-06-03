@@ -84,8 +84,16 @@ fi
 # write current data if file does not exist. Do not exit, this will cause
 # problems if this file is sourced instead of executed as another process.
 if ! [[ -f "${path}" ]]; then
-  echo "${time} ${rx} ${tx}" > "${path}"
+  echo "${time} ${rx} ${tx} 0 0" > "${path}"
   chmod 0666 "${path}"
+fi
+
+if [ "${old[3]}" == "" ] || [ "${old[4]}" == "" ]; then
+	oldrx=0
+	oldtx=0
+else
+	oldrx=${old[3]}
+	oldtx=${old[4]}
 fi
 
 # calc bytes transferred, and their rate in byte/s
@@ -94,18 +102,18 @@ tx_diff=$(( $tx - ${old[2]} ))
 
 # calculate incoming rate
 if [ $rx_diff -gt 0 ]; then
-	rx_rate=$( expr \( \( $rx_diff / $time_diff \) + \( $averagingSpeed - 1 \) \* ${old[3]} \) / $averagingSpeed )
+	rx_rate=$( expr \( \( $rx_diff / $time_diff \) + \( $averagingSpeed - 1 \) \* $oldrx \) / $averagingSpeed )
 	# rx_rate=$( expr \( \( $rx_diff / $time_diff \) \* 1 + 9 \* ${old[3]} \) / 10 )
 else
-	rx_rate=$( expr \( \( $averagingSpeed - 1 \) \* ${old[3]} \) / $averagingSpeed )
+	rx_rate=$( expr \( \( $averagingSpeed - 1 \) \* $oldrx \) / $averagingSpeed )
 fi
 	
 # calculate outgoing rate
 if [ $tx_diff -gt 0 ]; then
-	tx_rate=$( expr \( \( $tx_diff / $time_diff \) + \( $averagingSpeed - 1 \) \* ${old[4]} \) / $averagingSpeed )
+	tx_rate=$( expr \( \( $tx_diff / $time_diff \) + \( $averagingSpeed - 1 \) \* $oldtx \) / $averagingSpeed )
 	# tx_rate=$( expr \( \( $tx_diff / $time_diff \) \) / 1 )
 else
-	tx_rate=$( expr \( \( $averagingSpeed - 1 \) \* ${old[4]} \) / $averagingSpeed )
+	tx_rate=$( expr \( \( $averagingSpeed - 1 \) \* $oldtx \) / $averagingSpeed )
 fi
 
 # update stored values
