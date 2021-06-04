@@ -1,6 +1,0 @@
-#!/bin/bash
-
-image=""
-upgrades=$(pacman -Qu | wc | awk '{ print $1 }')
-
-printf "%s %s" "$image" "$upgrades"

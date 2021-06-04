@@ -1,2 +1,0 @@
-temp=$(cat /sys/class/thermal/thermal_zone0/device/thermal_zone/temp)
-printf " %2.0d°C" "$(expr $temp / 1000)"
