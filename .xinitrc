@@ -12,5 +12,7 @@ picom -b
 dwmblocks &
 dunst &
 
+blueman-applet &
+
 # exec i3
 exec dwm
