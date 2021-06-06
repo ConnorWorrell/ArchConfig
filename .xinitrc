@@ -9,10 +9,12 @@ unset f
 
 picom -b
 
-dwmblocks &
 dunst &
 
 blueman-applet &
+
+dwmblocks &
+dwmBlocksPackageUpdateDisplay &
 
 # exec i3
 exec dwm
