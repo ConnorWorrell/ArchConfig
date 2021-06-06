@@ -1,0 +1,13 @@
+#!/bin/dash
+
+sleep 10s
+
+while [ "" = "" ]
+do
+	yay -Sy
+	pkill -RTMIN+6 dwmblocks	
+	sleep 1h 
+done
+
+
+notify-send "ran off the end of while loop"
