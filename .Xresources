@@ -36,3 +36,6 @@
 *.color15:      #c5c8c6
 
 URxvt*scrollBar: false
+
+URxvt*font: xft:Fira Mono:size=9
+URxvt*boldFont: xft:Fira Mono Bold:size=9
