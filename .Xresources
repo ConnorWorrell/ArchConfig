@@ -37,5 +37,5 @@
 
 URxvt*scrollBar: false
 
-URxvt*font: xft:Fira Mono:size=9
-URxvt*boldFont: xft:Fira Mono Bold:size=9
+URxvt*font: xft:Inconsolata:size=8
+URxvt*boldFont: xft:Inconsolata SemiBold:size=16
