@@ -28,3 +28,14 @@ set wrap
 
 set number relativenumber
 set nu rnu
+
+set nocompatible
+let &rtp  = '~/.vim/bundle/vimtex,' . &rtp
+let &rtp .= '~/.vim/bundle/vimtex/after'
+filetype plugin indent on
+syntax enable
+
+let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_view_method = 'mupdf'
+let g:tex_flavor = 'latex'
+let g:continuous = 1
