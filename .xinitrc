@@ -16,5 +16,7 @@ blueman-applet &
 dwmblocks &
 dwmBlocksPackageUpdateDisplay &
 
+clight
+
 # exec i3
 exec dwm
