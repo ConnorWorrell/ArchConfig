@@ -17,6 +17,7 @@ dwmblocks &
 dwmBlocksPackageUpdateDisplay &
 
 clight &
+xbindkeys &
 
 # exec i3
 exec dwm
