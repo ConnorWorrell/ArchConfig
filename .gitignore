@@ -92,4 +92,5 @@ Wallpapers
 .config/fontforge
 Documents
 fontmerge
-
+.config/qalculate*
+.npm*
