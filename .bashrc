@@ -14,3 +14,5 @@ export PATH=~/.scripts:~/.scripts/dwmblocks:$PATH
 # Bash tab complete
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
+
+alias cpp='rsync -t --progress'
