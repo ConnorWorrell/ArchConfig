@@ -16,3 +16,7 @@ export PATH=~/.scripts:~/.scripts/dwmblocks:$PATH
     . /usr/share/bash-completion/bash_completion
 
 alias cpp='rsync -t --progress'
+alias mv='mv -i'
+alias rm='rm -i'
+alias alacritty='LIBGL_ALWAYS_SOFTWARE=1 alacritty'
+shopt -s autocd
