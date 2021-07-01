@@ -2,7 +2,7 @@
 
 [ -d ~/myPhone ] && read -p "~/myPhone already exists, overwrite? [y/N]: " yn &&
 case $yn in
-	[Yy]*);;
+	[Yy]*)rm -i -rd ~/myPhone;;
 	*) echo "Aborted"; return 1;;
 esac
 
