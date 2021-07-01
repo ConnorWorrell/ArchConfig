@@ -1,0 +1,10 @@
+#!/bin/dash
+
+[ -d ~/myPhone ] && read -p "~/myPhone already exists, overwrite? [y/N]: " yn &&
+case $yn in
+	[Yy]*);;
+	*) echo "Aborted"; return 1;;
+esac
+
+mkdir ~/myPhone
+jmtpfs ~/myPhone
