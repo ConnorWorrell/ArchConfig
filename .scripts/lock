@@ -163,6 +163,14 @@ fi
 
 if [ "$lock" == "lock" ]
 then
+	if [ "$(ps aux | grep -i X11 | wc | awk '{print $1}')" -lt 2 ]
+	then
+		echo "No X11 instance found, running vlock"
+		vlock
+		exit 0
+	fi
+
+
 	if [ "$lockfile" == "" ]
 	then
 		file=$(ls ~/Wallpapers | shuf -n 1)
@@ -187,5 +195,7 @@ then
 	fi	
 
 	echo "locking"
-	i3lock --image $fullpath
+
+	i3lock --image $fullpath || vlock
+
 fi
