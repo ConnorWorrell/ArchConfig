@@ -13,6 +13,8 @@ set smartcase
 set hlsearch
 set magic
 
+set clipboard=unnamedplus
+
 set showmatch
 set mat=2
 
