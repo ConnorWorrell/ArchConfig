@@ -94,3 +94,14 @@ Documents
 fontmerge
 .config/qalculate*
 .npm*
+.config/GIMP/*
+.config/gtk-2.0/*
+.config/libreoffice/*
+.config/lutris/*
+.config/menus/*
+.config/nvim/*
+.config/qutebrowser/*
+.config/systemd/*
+.ssh/*
+.wine*
+Games/*
