@@ -105,3 +105,10 @@ fontmerge
 .ssh/*
 .wine*
 Games/*
+.FreeCAD/*
+.config/FreeCAD/*
+.renpy/*
+.steam/*
+.steampath
+.steampid
+proton/*
