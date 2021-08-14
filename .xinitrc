@@ -30,5 +30,7 @@ xset dpms 1800 2000 2200 &
 autocutsel -fork -selection CLIPBOARD
 autocutsel -fork -selection PRIMARY
 
+fcitx -d &
+
 # exec i3
 exec dwm

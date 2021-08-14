@@ -28,5 +28,13 @@ alias winejp='LANG=ja_JP.UTF-8 wine'
 # Mount iso file
 alias mountiso='mount -o loop'
 
+# Start and disown dwmblocks
+alias blocks='dwmblocks & disown $!'
+
 # CD into file without cd command
 shopt -s autocd
+
+export GTK_IM_MODULE='fcitx'
+export QT_IM_MODULE='fcitx'
+export SDL_IM_MODULE='fcitx'
+export XMODIFIERS='@im=fcixt'
