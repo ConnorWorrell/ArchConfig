@@ -128,3 +128,5 @@ proton/*
 .java/
 .python_history
 
+Audio/
+.newsboat/
