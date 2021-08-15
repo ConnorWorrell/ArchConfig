@@ -31,6 +31,7 @@ autocutsel -fork -selection CLIPBOARD
 autocutsel -fork -selection PRIMARY
 
 fcitx -d &
+newsBoatReload &
 
 # exec i3
 exec dwm

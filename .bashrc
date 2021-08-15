@@ -38,3 +38,5 @@ export GTK_IM_MODULE='fcitx'
 export QT_IM_MODULE='fcitx'
 export SDL_IM_MODULE='fcitx'
 export XMODIFIERS='@im=fcixt'
+
+alias news='newsboat && pkill -RTMIN+8 dwmblocks'

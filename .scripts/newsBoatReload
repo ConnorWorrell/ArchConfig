@@ -1,0 +1,11 @@
+#!/bin/dash
+
+sleep 60s
+
+while [ "" = "" ]
+do
+	newsboat -x reload
+	pkill -RTMIN+8 dwmblocks
+	sleep 8h
+done
+
