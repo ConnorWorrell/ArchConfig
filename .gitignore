@@ -130,3 +130,6 @@ proton/*
 
 Audio/
 .newsboat/
+.config/Thunar/
+.config/fcitx/log/
+.config/xfce4/
