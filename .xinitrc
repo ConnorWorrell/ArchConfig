@@ -32,6 +32,7 @@ autocutsel -fork -selection PRIMARY
 
 fcitx -d &
 newsBoatReload &
+nm-applet 2>&1 > /dev/null &
 
 # exec i3
 exec dwm
