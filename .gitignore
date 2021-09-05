@@ -133,3 +133,5 @@ Audio/
 .config/Thunar/
 .config/fcitx/log/
 .config/xfce4/
+.config/wineReg/
+.mtab.fuseiso
