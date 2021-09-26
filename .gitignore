@@ -127,7 +127,6 @@ proton/*
 .config/tagaini.net/
 .java/
 .python_history
-
 Audio/
 .newsboat/
 .config/Thunar/
@@ -135,3 +134,4 @@ Audio/
 .config/xfce4/
 .config/wineReg/
 .mtab.fuseiso
+.ICEauthority
