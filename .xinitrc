@@ -34,5 +34,8 @@ fcitx -d &
 newsBoatReload &
 nm-applet 2>&1 > /dev/null &
 
+addResolutions
+
 # exec i3
 exec dwm
+# exec startxfce4

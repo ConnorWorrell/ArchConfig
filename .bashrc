@@ -42,3 +42,5 @@ export XMODIFIERS='@im=fcixt'
 alias news='newsboat && pkill -RTMIN+8 dwmblocks'
 
 alias neofetch='uwufetch'
+
+alias vi="vim"
