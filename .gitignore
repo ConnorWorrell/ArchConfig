@@ -162,4 +162,14 @@ VideosGit1/
 lib32-x264/
 .purple/
 Notes
-
+.config/Joplin
+.config/Nextcloud
+.config/configstore
+.config/joplin-desktop
+.electron-gyp
+.node-gyp
+.yarnrc
+Share
+VideosGit
+mediastorage
+q
