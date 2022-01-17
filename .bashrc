@@ -44,3 +44,6 @@ alias news='newsboat && pkill -RTMIN+8 dwmblocks'
 alias neofetch='uwufetch'
 
 alias vi="vim"
+alias draw="gromit-mpx"
+alias notes="joplin"
+alias cdf="source cdf"
