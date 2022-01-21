@@ -1,4 +1,4 @@
-directories="$(ls -d */ | grep -i $1)"
+directories="$(ls -l | grep -i "^d.*$1" | cut -d\  -f19- )"
 echo "$(echo "$directories" | wc -l)"
-[ "$(echo "$directories" | wc -l)" -gt "1" ] && directories="$(echo "$directories" | dmenu)"
+[ "$(echo "$directories" | wc -l)" -gt "1" ] && directories="$(echo "$directories" | dmenu -i)"
 cd "$directories"
