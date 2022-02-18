@@ -196,6 +196,8 @@ then
 
 	echo "locking"
 
-	i3lock --image $fullpath || vlock
+	dunstctl set-paused true
+	i3lock --image $fullpath -n || vlock
+	dunstctl set-paused false
 
 fi

@@ -47,3 +47,16 @@ alias vi="vim"
 alias draw="gromit-mpx"
 alias notes="joplin"
 alias cdf="source cdf"
+
+bind TAB:menu-complete
+bind '"\e[Z":menu-complete-backward'
+bind "set show-all-if-ambiguous on"
+bind "set menu-complete-display-prefix on"
+
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
+
+# StartX on login
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+	startx
+fi
