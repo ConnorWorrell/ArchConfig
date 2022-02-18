@@ -186,8 +186,7 @@ q
 .nuget/
 .scripts/cmenu
 .scripts/joplin
-.scripts/mountMainframe
-.scripts/mountMedia
+.scripts/mount*
 .subversion
 Nextcloud*
 snap/
