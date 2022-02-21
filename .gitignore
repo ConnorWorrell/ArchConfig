@@ -192,3 +192,9 @@ Nextcloud*
 snap/
 prints/
 PartsLibrary/
+.logseq/
+.emacs.d/
+.config/Logseq/
+.config/gh
+.config/kitty
+*Utilities/

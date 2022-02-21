@@ -19,7 +19,7 @@ audio=yes
 
 --]]
 
-MAXENTRIES = 5000
+MAXENTRIES = 100
 
 local msg = require 'mp.msg'
 local options = require 'mp.options'

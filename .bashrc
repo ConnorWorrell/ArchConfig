@@ -16,6 +16,9 @@ export STEAM_COMPAT_DATA_PATH=$HOME/proton
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
 
+HISTFILE="/tmp/.bash_history"
+HISTCONTROL=ignoredups
+
 # Copy with progress bar
 alias cpp='rsync -t --progress'
 
@@ -46,6 +49,7 @@ alias neofetch='uwufetch'
 alias vi="vim"
 alias draw="gromit-mpx"
 alias notes="joplin"
+alias knowledge="logseq"
 alias cdf="source cdf"
 
 bind TAB:menu-complete
