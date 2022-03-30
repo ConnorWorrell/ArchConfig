@@ -10,6 +10,8 @@ unset f
 # compositor
 picom -b
 
+#xautolock -time 60 -locker lock
+
 # notification handler
 dunst &
 
@@ -35,7 +37,13 @@ newsBoatReload &
 nm-applet 2>&1 > /dev/null &
 
 addResolutions
+automon &
+
+srandrd -n automon &
+
+otd > /tmp/otd.log &
 
 # exec i3
 exec dwm
 # exec startxfce4
+# exec kde

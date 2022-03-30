@@ -1,0 +1,12 @@
+#!/bin/bash
+
+command=$(monhoriz)
+bash -c "$command"
+
+# If xrandr didn't change don't change wallpaper
+[ -f "/tmp/currxrandrset" ] && [ "$(cat /tmp/currxrandrset)" == "$command" ] && exit
+
+echo $command > /tmp/currxrandrset
+echo $command >> /tmp/bgset.log
+
+setWallpaper -r

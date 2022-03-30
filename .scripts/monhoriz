@@ -4,7 +4,7 @@
 mons="$(xrandr | grep -i " connected" | awk '{print echo $1}')"
 monsdisc="$(xrandr | grep -i "disconnected" | awk '{print echo $1}')"
 
-echo $monsdisc
+#echo $monsdisc
 
 commandtorun="xrandr"
 for mon in $mons
@@ -23,6 +23,5 @@ do
     commandtorun="$commandtorun --output $mon --off"
 done
 
-
 echo $commandtorun
-bash -c "$commandtorun"
+#bash -c "$commandtorun"
