@@ -1,12 +1,21 @@
 #!/bin/bash
 
+outputFilter () {
+	echo "$(echo $1 | sed 's/--output/\n--output/g' | grep "output" | awk '{print $2 $3}')"
+}
+
 command=$(monhoriz)
-bash -c "$command"
+
+#echo "Prev"
+#echo "$(outputFilter "$(cat /tmp/currxrandrset)")"
+#echo "Now"
+#echo "$(outputFilter "$command")"
 
 # If xrandr didn't change don't change wallpaper
-[ -f "/tmp/currxrandrset" ] && [ "$(cat /tmp/currxrandrset)" == "$command" ] && exit
+[ -f "/tmp/currxrandrset" ] && [ "$(outputFilter "$(cat /tmp/currxrandrset)")" == "$(outputFilter "$command")" ] && exit
 
 echo $command > /tmp/currxrandrset
 echo $command >> /tmp/bgset.log
+bash -c "$command"
 
 setWallpaper -r
