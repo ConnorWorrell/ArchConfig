@@ -9,7 +9,7 @@ alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
 # add scripts folder to path
-export PATH=~/.scripts:~/.scripts/dwmblocks:$PATH
+export PATH=~/.scripts:~/.scripts/dwmblocks:~/Applications:~/.emacs.d/bin:$PATH
 export STEAM_COMPAT_DATA_PATH=$HOME/proton
 
 # Bash tab complete
@@ -27,6 +27,7 @@ alias alacritty='LIBGL_ALWAYS_SOFTWARE=1 alacritty'
 
 # Run wine with jp locale
 alias winejp='LANG=ja_JP.UTF-8 wine'
+#alias winejp='LANG=ja_JP.UTF-8 wine'
 
 # Mount iso file
 alias mountiso='mount -o loop'
@@ -51,6 +52,11 @@ alias draw="gromit-mpx"
 alias notes="joplin"
 alias knowledge="logseq"
 alias cdf="source cdf"
+alias restrict="firejail --net=none"
+alias restrictwine="firejail --net=none -- wine"
+alias restrictwinejp="LANG=ja_JP.UTF-8 firejail --net=none --noprofile -- wine"
+alias brave="firejail brave"
+alias journal="xournalpp"
 
 bind TAB:menu-complete
 bind '"\e[Z":menu-complete-backward'
