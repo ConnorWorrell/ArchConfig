@@ -175,7 +175,6 @@ mediastorage
 q
 .cmenu/
 .config/ChiTuBox/
-.config/flameshot/
 .config/gtk-3.0/
 .config/nuclear/
 .config/user-dirs.dirs
@@ -222,3 +221,7 @@ Photos
 *.mkv
 *.gz
 *.FCStd
+.auctex-auto/
+.jupyter/
+Packages/
+.doom.d/custom.el
