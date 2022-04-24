@@ -1,5 +1,3 @@
-setWallpaper -r
-
 xrdb -load ~/.Xresources
 
 for f in /etc/X11/xinit/xinitrc.d/?.sh; do
@@ -7,8 +5,10 @@ for f in /etc/X11/xinit/xinitrc.d/?.sh; do
 done
 unset f
 
+setWallpaper -r &
+
 # compositor
-picom -b
+picom -b &
 
 #xautolock -time 60 -locker lock
 
