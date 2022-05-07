@@ -43,6 +43,8 @@ srandrd -n automon &
 
 otd > /tmp/otd.log &
 
+batteryCheckReload &
+
 # exec i3
 exec dwm
 # exec startxfce4
